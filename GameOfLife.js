@@ -4,6 +4,7 @@ export class GameOfLife {
         this.width = width;
         this.height = height;
         this.startpopulation = 0;
+        this.currentPopulation = 0;
 
         this.cells = new Array(width);
     }
@@ -14,6 +15,7 @@ export class GameOfLife {
             this.cells[x] = new Array(this.height);
             for (let y = 0; y < this.height; y++) {
                 this.cells[x][y] = Math.random() > this.startpopulation;
+                if (this.cells[x][y]) this.currentPopulation++;
             }
         }
     }
@@ -33,14 +35,17 @@ export class GameOfLife {
                 // Une cellule vivante avec moins de deux voisins vivants meurt
                 if (this.cells[x][y] && aliveNeighbors < 2) {
                     clonedMatrix[x][y] = false;
+                    this.currentPopulation--;
                 }
                 // Une cellule vivante avec plus de trois voisins vivants meurt
                 else if (this.cells[x][y] && aliveNeighbors > 3) {
                     clonedMatrix[x][y] = false;
+                    this.currentPopulation--;
                 }
                 // Une cellule morte avec exactement trois voisins vivants ressuscite
                 else if (!this.cells[x][y] && aliveNeighbors == 3) {
                     clonedMatrix[x][y] = true;
+                    this.currentPopulation++;
                 }
             }
         }
@@ -69,5 +74,9 @@ export class GameOfLife {
             }
         }
         return count;
+    }
+
+    getCurrentPopulation() {
+        return this.currentPopulation;
     }
 }

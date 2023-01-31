@@ -55,6 +55,22 @@ body {
     background-color: black;
 }
 
+.menu p {
+    color : white;
+}
+
+.menubutton {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#settings {
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    position:fixed;
+}
+
 button:hover {
     cursor:pointer;
 }
@@ -85,6 +101,14 @@ button:hover {
     background-color: blue !important;
 }
 
+.lightblue {
+    background-color: lightblue !important;
+}
+
+.pink {
+    background-color: pink !important;
+}
+
 /* Border Colors */
 
 .noneBorder {
@@ -113,4 +137,12 @@ button:hover {
 
 .blueBorder {
     border-color: blue !important;
+}
+
+.lightblueBorder {
+    border-color: lightblue !important;
+}
+
+.pinkBorder {
+    border-color: pink !important;
 }

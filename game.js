@@ -1,6 +1,15 @@
 import { GameOfLife } from './GameOfLife.js';
 import { Graphics } from './graphics.js';
 
+let startButton = document.getElementById("start-button");
+let stopButton = document.getElementById("stop-button");
+let resetButton = document.getElementById("reset-button");
+let settingsButton = document.getElementById("settings-button");
+let confirmParametersButton = document.getElementById("confirm-settings-button");
+let cancelParametersButton = document.getElementById("cancel-settings-button");
+
+let settingsField = document.getElementById("settings");
+
 let interval = null;
 
 /* Paramètres à modifier sur l'interface */
@@ -44,9 +53,22 @@ function stop() {
     }
 }
 
-let startButton = document.getElementById("start-button");
-let stopButton = document.getElementById("stop-button");
-let resetButton = document.getElementById("reset-button");
+function cancelParameters() {
+    console.log("Cancel Settings");
+}
+
+function confirmParameters() {
+    console.log("Confirm Settings");
+}
+
+function settingsButtonClick() {
+    if (settingsField.hidden) {
+        console.log("Click")
+        settingsField.hidden = false;
+    }
+}
+
+settingsField.hidden = true;
 
 game.setStartpopulation(startPopulation);
 game.populate();
@@ -59,3 +81,6 @@ display(game);
 
 startButton.addEventListener("click", start);
 stopButton.addEventListener("click", stop);
+settingsButton.addEventListener("click", settingsButtonClick);
+confirmParametersButton.addEventListener("click", confirmParameters);
+cancelParametersButton.addEventListener("click", cancelParameters);
