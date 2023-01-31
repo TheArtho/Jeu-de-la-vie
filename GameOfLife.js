@@ -3,14 +3,23 @@ export class GameOfLife {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.cells = new Array(width);
+        this.startpopulation = 0.7;
 
-        for (let x = 0; x < width; x++) {
-            this.cells[x] = new Array(height);
-            for (let y = 0; y < height; y++) {
-                this.cells[x][y] = Math.random() > 0.7;
+        this.cells = new Array(width);
+    }
+
+    // Crée une population de cellules aléatoire
+    populate() {
+        for (let x = 0; x < this.width; x++) {
+            this.cells[x] = new Array(this.height);
+            for (let y = 0; y < this.height; y++) {
+                this.cells[x][y] = Math.random() > this.startpopulation;
             }
         }
+    }
+
+    setStartpopulation(value) {
+        this.startpopulation = value;
     }
 
     // Applique les règles du jeu de la vie à chaque cellule

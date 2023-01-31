@@ -1,11 +1,19 @@
 import { GameOfLife } from './GameOfLife.js';
 import { Graphics } from './graphics.js';
 
-let timeout = 100; // Met à jour le jeu de la vie toutes les 500ms
 let interval = null;
 
+/* Paramètres à modifier sur l'interface */
+let timeout = 100;  // Met à jour le jeu de la vie toutes les 500ms
+let width = 160;    // Largeur de la grille
+let height = 90;    // Hauteur de la grille
+let startPopulation = 0.7;  // Pourcentage de population de départ
+let cellColor = "green";        // Couleur des cellules vivantes
+let backgroundColor = "black";  // Couleur des cellules mortes
+let borderColor = "none";       // Couleur des contours des cellules
+
 // Crée un objet GameOfLife avec une grille de X fois Y cellules
-let game = new GameOfLife(160*3, 90*3);
+let game = new GameOfLife(width, height);
 let graphics = new Graphics(game);
 
 // Fonction qui met à jour le jeu de la vie et affiche la grille
@@ -41,7 +49,14 @@ let startButton = document.getElementById("start-button");
 let stopButton = document.getElementById("stop-button");
 let resetButton = document.getElementById("reset-button");
 
-startButton.addEventListener("click", start);
-stopButton.addEventListener("click", stop);
+game.setStartpopulation(startPopulation);
+game.populate();
+
+graphics.setCellColor(cellColor);
+graphics.setBackgroundColor(backgroundColor);
+graphics.setBorderColor(borderColor);
 
 display(game);
+
+startButton.addEventListener("click", start);
+stopButton.addEventListener("click", stop);

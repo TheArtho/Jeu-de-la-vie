@@ -2,6 +2,9 @@ export class Graphics {
     constructor(game) {
         this.game = game;
         this.cells = new Array(game.width);
+        this.backgroundColor = "white";
+        this.cellColor = "black";
+        this.borderColor = "none";
 
         const parent = document.querySelector('#game-of-life');
 
@@ -26,7 +29,19 @@ export class Graphics {
         }
     }
 
+    setCellColor(value) {
+        this.cellColor = value;
+    }
+
+    setBackgroundColor(value) {
+        this.backgroundColor = value;
+    }
+
+    setBorderColor(value) {
+        this.borderColor = value;
+    }
+
     update(x,y,isAlive) {
-        this.cells[x][y].setAttribute('class', isAlive ? 'cell alive' : 'cell')
+        this.cells[x][y].setAttribute('class', isAlive ? 'cell alive '+this.cellColor+' '+this.borderColor+'Border' : 'cell '+this.backgroundColor+' '+this.borderColor+'Border');
     }
 }
