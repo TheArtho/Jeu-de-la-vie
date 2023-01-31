@@ -3,7 +3,7 @@ export class GameOfLife {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.startpopulation = 0.7;
+        this.startpopulation = 0;
 
         this.cells = new Array(width);
     }
@@ -53,6 +53,7 @@ export class GameOfLife {
         let count = 0;
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
+                // Ajout du modulo au calcul pour éviter quelconques sorties de tableau
                 let neighborX = (x + (i < 0 ? i + this.cells.length : i)) % this.cells.length;
                 let neighborY = (y + (j < 0 ? j + this.cells[0].length : j)) % this.cells[0].length;
 
@@ -60,10 +61,8 @@ export class GameOfLife {
                 if (i == 0 && j == 0) {
                     continue;
                 }
-                // Ignore les cellules hors de la grille
-                /*if (neighborX < 0 || neighborY < 0 || neighborX >= this.cells.length || neighborY >= this.cells[0].length) {
-                    continue;
-                }*/
+
+                // Si la cellule voisine est active, on la compte
                 if (this.cells[neighborX][neighborY]) {
                     count++;
                 }

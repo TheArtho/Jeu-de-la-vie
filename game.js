@@ -24,7 +24,6 @@ function update() {
 
 function display(game) {
     // Affiche la grille de cellules dans la console
-    //let output = "";
     for (let y = 0; y < game.cells[0].length; y++) {
         for (let x = 0; x < game.cells.length; x++) {
             graphics.update(x, y, game.cells[x][y]);
