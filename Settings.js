@@ -1,19 +1,16 @@
 export class Settings {
-    constructor(json, colorList, structureList) {
-        // Valeurs par défaut des paramètres
-        this._timeout = 110;  // Met à jour le jeu de la vie toutes les 500ms
-        this._width = 50;    // Largeur de la grille
-        this._height = 50;    // Hauteur de la grille
+    constructor(json) {
+        // Valeurs par défaut
+        this._timeout = 100;  // Met à jour le jeu de la vie toutes les 500ms
+        this._width = 200;    // Largeur de la grille
+        this._height = 120;    // Hauteur de la grille
         this._startWithPopulation = true;
         this._startPopulation = 70;  // Pourcentage de population de départ
-        this._cellColor = "black";        // Couleur des cellules vivantes
-        this._backgroundColor = "white";  // Couleur des cellules mortes
-        this._borderColor = "lightgray";         // Couleur des contours des cellules
-        this._structure = "none";
+        this._cellColor = "green";        // Couleur des cellules vivantes
+        this._backgroundColor = "black";  // Couleur des cellules mortes
+        this._borderColor = "none";         // Couleur des contours des cellules
 
         this.json = json;
-        this.colorList = colorList;
-        this.structureList = structureList;
     }
 
     set timeout(value) {
@@ -42,31 +39,15 @@ export class Settings {
     }
 
     set cellColor(value) {
-        if (typeof value !== 'string') return;
-        if (this.colorList.includes(value)) {
-            this._cellColor = value;
-        }
+        this._cellColor = value;
     }
 
     set backgroundColor(value) {
-        if (typeof value !== 'string') return;
-        if (this.colorList.includes(value)) {
-            this._backgroundColor = value;
-        }
+        this._backgroundColor = value;
     }
 
     set borderColor(value) {
-        if (typeof value !== 'string') return;
-        if (this.colorList.includes(value) || value === 'none') {
-            this._borderColor = value;
-        }
-    }
-
-    set structure(value) {
-        if (typeof value !== 'string') return;
-        if (this.structureList.includes(value) || value === 'none') {
-            this._structure = value;
-        }
+        this._borderColor = value;
     }
 
     updateSettingsField() {

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 <head>
-    <meta charset="utf-8">
     <title>Game of Life</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
     <div id="game-of-life">
         <!-- Les cellules du jeu de la vie seront ajoutées ici -->
@@ -16,19 +15,19 @@
                 <h2>Valeurs</h2>
                 <div class="input">
                     <label for="startWithPopulation">Commencer avec une population de départ :</label>
-                    <input id="startWithPopulation" name="startWithPopulation" type="checkbox">
+                    <input id="startWithPopulation" name="startWithPopulation" type="checkbox"/>
                 </div>
                 <div class="input">
                     <label for="startPopulation">Pourcentage de population :</label>
-                    <input id="startPopulation" name="startPopulation" type="number" min="0" max="100" value ="70">
+                    <input id="startPopulation" name="startPopulation" type="number" min="0" max="100" value ="70"/>
                 </div>
                 <div class="input">
                     <label for="width">Hauteur de la grille :</label>
-                    <input id="width" name="width" type="number" min="1" max="200" value ="160">
+                    <input id="width" name="width" type="number" min="1" max="200" value ="160"/>
                 </div>
                 <div class="input">
                     <label for="startPopulation">Largeur de la grille :</label>
-                    <input id="height" name="height" type="number" min="1" max="200" value ="90">
+                    <input id="height" name="height" type="number" min="1" max="200" value ="90"/>
                 </div>
             </div>
             <div>
@@ -43,8 +42,6 @@
                         <option value="red">Rouge</option>
                         <option value="green">Vert</option>
                         <option value="blue">Bleu</option>
-                        <option value="lightblue">Bleu clair</option>
-                        <option value="pink">Rose</option>
                     </select>
                 </div>
                 <div class="input">
@@ -57,8 +54,6 @@
                         <option value="red">Rouge</option>
                         <option value="green">Vert</option>
                         <option value="blue">Bleu</option>
-                        <option value="lightblue">Bleu clair</option>
-                        <option value="pink">Rose</option>
                     </select>
                 </div>
                 <div class="input">
@@ -71,8 +66,6 @@
                         <option value="red">Rouge</option>
                         <option value="green">Vert</option>
                         <option value="blue">Bleu</option>
-                        <option value="lightblue">Bleu clair</option>
-                        <option value="pink">Rose</option>
                         <option value="none">Aucun</option>
                     </select>
                 </div>
@@ -84,19 +77,6 @@
         </div>
     </div>
     <div id="menu" class="menu">
-        <div class="input">
-            <label for="structure">Structure :</label>
-            <select name="structure" id="structure">
-                <option value="none" selected>Aucune</option>
-                <option value="carre">Carré</option>
-                <option value="clignotant">Clignotant</option>
-                <option value="planeur">Planeur</option>
-            </select>
-        </div>
-        <div class="input">
-            <label for="timeout">Vitesse :</label>
-            <input id="timeout" name="timeout" type="number" min="10" max="4000" step="50" value ="110">
-        </div>
         <button class="menubutton" id="start-button">Démarrer</button>
         <button class="menubutton" id="stop-button">Arrêter</button>
         <button class="menubutton" id="reset-button">Réinitialiser</button>
@@ -105,6 +85,11 @@
         <p id="currentPopulation"></p>
     </div>
 
-    <script type="module" src="./game.js"></script>
+<<<<<<< HEAD
+    <script type="module" src="./app.js"></script>
 </body>
 </html>
+=======
+    <script type="module" src="./game.js"></script>
+</body>
+>>>>>>> parent of 56271d5 (Ajout structures)

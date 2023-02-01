@@ -38,10 +38,6 @@ body {
     border: 1px solid #ccc;
 }
 
-.cell:hover, .preview {
-    opacity: 0.5 !important;
-}
-
 .cell.alive {
     background-color: #333;
 }
@@ -59,11 +55,11 @@ body {
     background-color: black;
 }
 
-.menu p,.menu label {
+.menu p {
     color : white;
 }
 
-.menu>* {
+.menubutton {
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -73,7 +69,6 @@ body {
     height: 50%;
     background-color: white;
     position:fixed;
-    border: 1px solid black;
 }
 
 button:hover {
@@ -92,10 +87,6 @@ button:hover {
 
 .gray {
     background-color: gray !important;
-}
-
-.lightgray {
-    background-color: lightgray !important;
 }
 
 .red {
@@ -134,10 +125,6 @@ button:hover {
 
 .grayBorder {
     border-color: gray !important;
-}
-
-.lightgray {
-    border-color: lightgray !important;
 }
 
 .redBorder {
