@@ -2,16 +2,19 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 <head>
-    <title>Game of Life</title>
+    <title>Jeu de la vie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <div id="main-of-life">
+    <div id="game-of-life">
         <!-- Les cellules du jeu de la vie seront ajoutées ici -->
     </div>
     <div id="settings">
         <div class="parameters">
-            <div>
+            <div class="param">
                 <h2>Valeurs</h2>
                 <div class="input">
                     <label for="startWithPopulation">Commencer avec une population de départ :</label>
@@ -30,7 +33,7 @@
                     <input id="height" name="height" type="number" min="1" max="200" value ="90"/>
                 </div>
             </div>
-            <div>
+            <div class="param">
                 <h2>Affichage</h2>
                 <div class="input">
                     <label for="startWithPopulation">Couleur des cellules :</label>
@@ -87,7 +90,7 @@
             </select>
         </div>
         <div class="input">
-            <label for="timeout">Vitesse :</label>
+            <label for="timeout">Rafraîchissement (ms) :</label>
             <input id="timeout" name="timeout" type="number" min="10" max="4000" step="50" value ="110">
         </div>
         <button class="menubutton" id="start-button">Démarrer</button>
