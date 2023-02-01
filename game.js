@@ -48,6 +48,12 @@ function stop() {
     }
 }
 
+function reset() {
+    game.reload(settings);
+    graphics.reload();
+    graphics.display();
+}
+
 function cancelParameters() {
     console.log("Cancel Settings");
     settingsField.hidden = true;
@@ -60,20 +66,17 @@ function confirmParameters() {
     let previousStartPopulation = settings._startPopulation;
     let previousStartWithPopulation = settings._startWithPopulation;
 
-    settings._width = document.getElementById('width').value;
-    console.log("width is "+settings._width)
-    settings._height = document.getElementById('height').value;
-    settings._startPopulation = document.getElementById('startPopulation').value;
-    settings._startWithPopulation = document.getElementById('startWithPopulation').checked;
+    settings.width = parseInt(document.getElementById('width').value);
+    settings.height = parseInt(document.getElementById('height').value);
+    settings.startPopulation = parseFloat(document.getElementById('startPopulation').value);
+    settings.startWithPopulation = document.getElementById('startWithPopulation').checked;
 
     settingsField.hidden = true;
 
     if (previousWidth != settings._width || previousHeight != settings._height || previousStartPopulation != settings._startPopulation ||
         previousStartWithPopulation != settings._startWithPopulation) {
         console.log("Reloading...");
-        game.reload(settings)
-        graphics.reload();
-        graphics.display();
+        reset();
         console.log("Game reloaded");
     }
 }
@@ -89,7 +92,7 @@ function settingsButtonClick() {
 settingsField.hidden = true;
 
 game.setStartpopulation(settings._startPopulation);
-game.populate();
+game.populate(settings._startPopulation);
 
 graphics.setCellColor(cellColor);
 graphics.setBackgroundColor(backgroundColor);
@@ -99,6 +102,7 @@ graphics.display();
 
 startButton.addEventListener("click", start);
 stopButton.addEventListener("click", stop);
+resetButton.addEventListener("click", reset);
 settingsButton.addEventListener("click", settingsButtonClick);
 confirmParametersButton.addEventListener("click", confirmParameters);
 cancelParametersButton.addEventListener("click", cancelParameters);

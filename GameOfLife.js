@@ -3,18 +3,17 @@ export class GameOfLife {
     constructor(width, height) {
         this.width = width;
         this.height = height;
-        this.startpopulation = 0;
         this.currentPopulation = 0;
 
         this.cells = new Array(width);
     }
 
     // Crée une population de cellules aléatoire
-    populate() {
+    populate(population) {
         for (let x = 0; x < this.width; x++) {
             this.cells[x] = new Array(this.height);
             for (let y = 0; y < this.height; y++) {
-                this.cells[x][y] = Math.random() > 1 - this.startpopulation;
+                this.cells[x][y] = Math.random() > 1 - population;
                 if (this.cells[x][y]) this.currentPopulation++;
             }
         }
@@ -83,11 +82,16 @@ export class GameOfLife {
     reload(settings) {
         this.width = settings._width;
         this.height = settings._height;
-        this.startpopulation = settings._startPopulation;
         this.currentPopulation = 0;
 
         this.cells = new Array(this.width);
 
-        if (settings._startWithPopulation) this.populate();
+        if (settings._startWithPopulation) {
+            this.populate(settings._startPopulation);
+        }
+        else {
+            this.populate(0);
+        }
+
     }
 }

@@ -14,17 +14,17 @@ export class Settings {
     }
 
     set timeout(value) {
-        if (Number.isInteger(value)) return;
+        if (!Number.isInteger(value)) return;
         this._timeout = Math.min(Math.max(value, this.json.min_timeout), this.json.max_timeout);
     }
 
     set width(value) {
-        if (Number.isInteger(value)) return;
+        if (!Number.isInteger(value)) return;
         this._width = Math.min(Math.max(value, this.json.min_width), this.json.max_width);
     }
 
     set height(value) {
-        if (Number.isInteger(value)) return;
+        if (!Number.isInteger(value)) return;
         this._height = Math.min(Math.max(value, this.json.min_height), this.json.max_height);
     }
 
@@ -34,7 +34,7 @@ export class Settings {
     }
 
     set startPopulation(value) {
-        if (Number.isFinite(value)) return;
+        if (isNaN(value)) return;
         this._startPopulation = Math.min(Math.max(value, 0), 1);
     }
 
