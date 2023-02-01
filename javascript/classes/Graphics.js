@@ -54,7 +54,7 @@ export class Graphics {
                 this.cells[y][x].setAttribute('class', 'cell')
 
                 this.cells[y][x].addEventListener("click", () => {
-                    let structure = getStructureObject(this.game.settings._structure, this);
+                    let structure = GetStructureObjectFromName(this.game.settings._structure, this);
 
                     if (structure == null) {
                         this.game.cells[y][x] = !this.game.cells[y][x];
@@ -78,7 +78,7 @@ export class Graphics {
     }
 }
 
-function getStructureObject(structure, graphics) {
+function GetStructureObjectFromName(structure, graphics) {
     switch(structure) {
         default:
             return null;

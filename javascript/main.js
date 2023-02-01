@@ -23,14 +23,14 @@ let colorList = jsonData.color_list;
 let structureList = jsonData.structure_list;
 
 let settings = new Settings(jsonData, colorList, structureList);
-let game = new GameOfLife(settings);
-let graphics = new Graphics(game);
+let gameOfLife = new GameOfLife(settings);
+let graphics = new Graphics(gameOfLife);
 
 timeoutInput.value = settings._timeout;
 
 // Fonction qui met à jour le jeu de la vie et affiche la grille
 function update() {
-    game.update();
+    gameOfLife.update();
     graphics.display();
 }
 
@@ -51,7 +51,7 @@ function stop() {
 
 // Fonction qui réinitialise la simulation
 function reset() {
-    game.reload(settings);
+    gameOfLife.reload(settings);
     graphics.reload();
     graphics.display();
 }
@@ -127,7 +127,7 @@ function updateStructure() {
 
 settingsField.hidden = true;
 
-game.populate(settings._startPopulation);
+gameOfLife.populate(settings._startPopulation);
 
 reset();
 

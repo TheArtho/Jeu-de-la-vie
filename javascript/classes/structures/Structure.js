@@ -16,6 +16,14 @@ export class Structure {
                 if (newY >= this.graphics.game.height) newY = 0;
                 if (newX >= this.graphics.game.width) newX = 0;
 
+                if (this.graphics.game.cells[newY][newX] && !this.composition[y][x]) {
+                    console.log("moins")
+                    this.graphics.game.currentPopulation--;
+                }
+                else if (!this.graphics.game.cells[newY][newX] && this.composition[y][x]) {
+                    console.log("plus")
+                    this.graphics.game.currentPopulation++;
+                }
                 this.graphics.game.cells[newY][newX] = this.composition[y][x];
                 this.graphics.update(newX, newY, this.composition[y][x]);
             }
