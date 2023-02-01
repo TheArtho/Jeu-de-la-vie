@@ -1,56 +1,39 @@
+import {Clignotant} from "./structures/Clignotant.js";
+import {Planeur} from "./structures/Planeur.js";
+import {Carre} from "./structures/Carre.js";
+
 export class Graphics {
-    constructor(game) {
+    constructor(game, colorList) {
         this.game = game;
-        this.cells = new Array(game.width);
+        this.cells = new Array(game.height);
         this.currentPopulationField = document.getElementById("currentPopulation");
-
-        this.colorList = [
-            "white",
-            "black",
-            "gray",
-            "lightgray",
-            "blue",
-            "lightblue",
-            "green",
-            "red",
-            "pink"
-        ]
-
-        this.backgroundColor = "white";
-        this.cellColor = "black";
-        this.borderColor = "none";
-
-        this.reload();
-    }
-
-    getColorList() {
-        return this.colorList;
-    }
-
-    setCellColor(value) {
-        this.cellColor = value;
-    }
-
-    setBackgroundColor(value) {
-        this.backgroundColor = value;
-    }
-
-    setBorderColor(value) {
-        this.borderColor = value;
+        this.reload(game);
     }
 
     update(x,y,isAlive) {
-        this.cells[x][y].setAttribute('class', isAlive ? 'cell alive '+this.cellColor+' '+this.borderColor+'Border' : 'cell '+this.backgroundColor+' '+this.borderColor+'Border');
+        // Recadre le pixel dans la zone opposée si elle dépasse de la grille
+        if (y < 0) y = this.game.height - 1;
+        if (x < 0) y = this.game.width - 1;
+        if (y >= this.game.height) y = 0;
+        if (x >= this.game.width) x = 0;
+
+        this.cells[y][x].setAttribute('class', isAlive ? 'cell alive '+this.game.settings._cellColor+' '+this.game.settings._borderColor+'Border' : 'cell '+this.game.settings._backgroundColor+' '+this.game.settings._borderColor+'Border');
+        this.currentPopulationField.innerHTML = this.game.currentPopulation;
+    }
+
+    preview(x,y,isAlive) {
+        this.cells[y][x].setAttribute('class', (isAlive ? 'cell alive '+this.game.settings._cellColor : 'cell '+this.game.settings._backgroundColor)+' '+this.game.settings._borderColor+'Border'+' preview');
         this.currentPopulationField.innerHTML = this.game.currentPopulation;
     }
 
     display() {
         // Affiche la grille de cellules dans la console
-        document.body.setAttribute('class', this.backgroundColor)
-        document.getElementById('game-of-life').setAttribute('class', this.backgroundColor)
-        for (let y = 0; y < this.game.cells[0].length; y++) {
-            for (let x = 0; x < this.game.cells.length; x++) {
-                this.update(x, y, this.game.cells[x][y]);
+        document.body.setAttribute('class', this.game.settings._backgroundColor)
+        console.log("Background color : "+this.game.settings._backgroundColor)
+        document.getElementById('game-of-life').setAttribute('class', this.game.settings._backgroundColor)
+        for (let y = 0; y < this.game.cells.length; y++) {
+            for (let x = 0; x < this.game.cells[0].length; x++) {
+                this.update(x, y, this.game.cells[y][x]);
             }
         }
     }
@@ -60,26 +43,51 @@ export class Graphics {
 
         parent.innerHTML = "";
 
-        for (let x = 0; x < this.game.width; x++) {
+        for (let y = 0; y < this.game.height; y++) {
             let line = document.createElement('div');
-            this.cells[x] = new Array(this.game.height);
+            this.cells[y] = new Array(this.game.width);
 
             line.setAttribute('class', "line")
             parent.append(line)
 
-            for (let y = 0; y < this.game.height; y++) {
-                this.cells[x][y] = document.createElement('div');
-                this.cells[x][y].setAttribute('class', 'cell')
+            for (let x = 0; x < this.game.width; x++) {
+                this.cells[y][x] = document.createElement('div');
+                this.cells[y][x].setAttribute('class', 'cell')
 
-                this.cells[x][y].addEventListener("click", () => {
-                    this.game.cells[x][y] = !this.game.cells[x][y];
-                    if (this.game.cells[x][y]) this.game.currentPopulation++;
-                    else this.game.currentPopulation--;
-                    this.update(x, y, this.game.cells[x][y]);
+                this.cells[y][x].addEventListener("click", () => {
+                    let structure = getStructureObject(this.game.settings._structure, this);
+
+                    if (structure == null) {
+                        this.game.cells[y][x] = !this.game.cells[y][x];
+                        if (this.game.cells[y][x]) this.game.currentPopulation++;
+                        else this.game.currentPopulation--;
+                        this.update(x, y, this.game.cells[y][x], this.game.settings);
+                    }
+                    else {
+                        structure.draw(x,y);
+                    }
+
                 });
 
-                line.append(this.cells[x][y]);
+                /*this.cells[y][x].addEventListener('mouseover', () => {
+                    new Planeur(this).preview(x,y);
+                });*/
+
+                line.append(this.cells[y][x]);
             }
         }
+    }
+}
+
+function getStructureObject(structure, graphics) {
+    switch(structure) {
+        default:
+            return null;
+        case 'carre':
+            return new Carre(graphics);
+        case 'clignotant':
+            return new Clignotant(graphics);
+        case 'planeur':
+            return new Planeur(graphics);
     }
 }
