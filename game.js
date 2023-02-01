@@ -1,5 +1,7 @@
 import { GameOfLife } from './GameOfLife.js';
-import { Graphics } from './graphics.js';
+import { Graphics } from './Graphics.js';
+import {Settings} from './Settings.js';
+import {jsonData} from './gameValues.js';
 
 let startButton = document.getElementById("start-button");
 let stopButton = document.getElementById("stop-button");
@@ -22,22 +24,15 @@ let backgroundColor = "black";  // Couleur des cellules mortes
 let borderColor = "none";       // Couleur des contours des cellules
 
 // Crée un objet GameOfLife avec une grille de X fois Y cellules
-let game = new GameOfLife(width, height);
+let settings = new Settings(jsonData);
+let game = new GameOfLife(settings._width, settings._height);
 let graphics = new Graphics(game);
+let backUpSettings = new Settings(jsonData);
 
 // Fonction qui met à jour le jeu de la vie et affiche la grille
 function update() {
     game.update();
-    display(game);
-}
-
-function display(game) {
-    // Affiche la grille de cellules dans la console
-    for (let y = 0; y < game.cells[0].length; y++) {
-        for (let x = 0; x < game.cells.length; x++) {
-            graphics.update(x, y, game.cells[x][y]);
-        }
-    }
+    graphics.display();
 }
 
 function start() {
@@ -55,29 +50,52 @@ function stop() {
 
 function cancelParameters() {
     console.log("Cancel Settings");
+    settingsField.hidden = true;
 }
 
 function confirmParameters() {
     console.log("Confirm Settings");
+    let previousWidth = settings._width;
+    let previousHeight = settings._height;
+    let previousStartPopulation = settings._startPopulation;
+    let previousStartWithPopulation = settings._startWithPopulation;
+
+    settings._width = document.getElementById('width').value;
+    console.log("width is "+settings._width)
+    settings._height = document.getElementById('height').value;
+    settings._startPopulation = document.getElementById('startPopulation').value;
+    settings._startWithPopulation = document.getElementById('startWithPopulation').checked;
+
+    settingsField.hidden = true;
+
+    if (previousWidth != settings._width || previousHeight != settings._height || previousStartPopulation != settings._startPopulation ||
+        previousStartWithPopulation != settings._startWithPopulation) {
+        console.log("Reloading...");
+        game.reload(settings)
+        graphics.reload();
+        graphics.display();
+        console.log("Game reloaded");
+    }
 }
 
 function settingsButtonClick() {
     if (settingsField.hidden) {
         console.log("Click")
+        settings.updateSettingsField();
         settingsField.hidden = false;
     }
 }
 
 settingsField.hidden = true;
 
-game.setStartpopulation(startPopulation);
+game.setStartpopulation(settings._startPopulation);
 game.populate();
 
 graphics.setCellColor(cellColor);
 graphics.setBackgroundColor(backgroundColor);
 graphics.setBorderColor(borderColor);
 
-display(game);
+graphics.display();
 
 startButton.addEventListener("click", start);
 stopButton.addEventListener("click", stop);

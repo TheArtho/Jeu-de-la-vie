@@ -14,7 +14,7 @@ export class GameOfLife {
         for (let x = 0; x < this.width; x++) {
             this.cells[x] = new Array(this.height);
             for (let y = 0; y < this.height; y++) {
-                this.cells[x][y] = Math.random() > this.startpopulation;
+                this.cells[x][y] = Math.random() > 1 - this.startpopulation;
                 if (this.cells[x][y]) this.currentPopulation++;
             }
         }
@@ -78,5 +78,16 @@ export class GameOfLife {
 
     getCurrentPopulation() {
         return this.currentPopulation;
+    }
+
+    reload(settings) {
+        this.width = settings._width;
+        this.height = settings._height;
+        this.startpopulation = settings._startPopulation;
+        this.currentPopulation = 0;
+
+        this.cells = new Array(this.width);
+
+        if (settings._startWithPopulation) this.populate();
     }
 }
