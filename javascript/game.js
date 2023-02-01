@@ -24,7 +24,7 @@ let structureList = jsonData.structure_list;
 
 let settings = new Settings(jsonData, colorList, structureList);
 let game = new GameOfLife(settings);
-let graphics = new Graphics(game, colorList);
+let graphics = new Graphics(game);
 
 timeoutInput.value = settings._timeout;
 

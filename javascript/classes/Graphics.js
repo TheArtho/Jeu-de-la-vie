@@ -3,7 +3,7 @@ import {Planeur} from "./structures/Planeur.js";
 import {Carre} from "./structures/Carre.js";
 
 export class Graphics {
-    constructor(game, colorList) {
+    constructor(game) {
         this.game = game;
         this.cells = new Array(game.height);
         this.currentPopulationField = document.getElementById("currentPopulation");
