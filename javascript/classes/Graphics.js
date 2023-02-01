@@ -18,12 +18,11 @@ export class Graphics {
         if (x >= this.game.width) x = 0;
 
         this.cells[y][x].setAttribute('class', isAlive ? 'cell alive '+this.game.settings._cellColor+' '+this.game.settings._borderColor+'Border' : 'cell '+this.game.settings._backgroundColor+' '+this.game.settings._borderColor+'Border');
-        this.currentPopulationField.innerHTML = this.game.currentPopulation;
+        this.currentPopulationField.innerHTML = this.game.currentPopulation > 0 ? this.game.currentPopulation : 0;
     }
 
     preview(x,y,isAlive) {
         this.cells[y][x].setAttribute('class', (isAlive ? 'cell alive '+this.game.settings._cellColor : 'cell '+this.game.settings._backgroundColor)+' '+this.game.settings._borderColor+'Border'+' preview');
-        this.currentPopulationField.innerHTML = this.game.currentPopulation;
     }
 
     display() {
