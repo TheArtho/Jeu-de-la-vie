@@ -1,5 +1,5 @@
-import { GameOfLife } from './GameOfLife.js';
-import { Graphics } from './Graphics.js';
+import {GameOfLife} from './GameOfLife.js';
+import {Graphics} from './Graphics.js';
 import {Settings} from './Settings.js';
 import {jsonData} from './gameValues.js';
 
