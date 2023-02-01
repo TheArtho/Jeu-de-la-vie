@@ -1,0 +1,161 @@
+/* Style du jeu de la vie */
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+    display:flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-of-life {
+    padding-bottom: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    background-color: #fff;
+}
+
+.game-of-life .line {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.cell {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.cell.alive {
+    background-color: #333;
+}
+
+.cell:hover, .preview {
+    opacity: 0.5 !important;
+}
+
+.menu {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    border: 1px solid black;
+}
+
+.menu p,.menu label {
+    color : white;
+}
+
+.menu>* {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#settings {
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    position:fixed;
+}
+
+button:hover {
+    cursor:pointer;
+}
+
+/* Colors */
+
+.white {
+    background-color: white !important;
+}
+
+.black {
+    background-color: black !important;
+}
+
+.gray {
+    background-color: gray !important;
+}
+
+.lightgray {
+    background-color: lightgray !important;
+}
+
+.red {
+    background-color: red !important;
+}
+
+.green {
+    background-color: green !important;
+}
+
+.blue {
+    background-color: blue !important;
+}
+
+.lightblue {
+    background-color: lightblue !important;
+}
+
+.pink {
+    background-color: pink !important;
+}
+
+/* Border Colors */
+
+.noneBorder {
+    border: none !important;
+}
+
+.whiteBorder {
+    border-color: white !important;
+}
+
+.blackBorder {
+    border-color: black !important;
+}
+
+.grayBorder {
+    border-color: gray !important;
+}
+
+.lightBorder {
+    border-color: lightgray !important;
+}
+
+.redBorder {
+    border-color: red !important;
+}
+
+.greenBorder {
+    border-color: green !important;
+}
+
+.blueBorder {
+    border-color: blue !important;
+}
+
+.lightblueBorder {
+    border-color: lightblue !important;
+}
+
+.pinkBorder {
+    border-color: pink !important;
+}
