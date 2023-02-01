@@ -68,7 +68,7 @@ function confirmParameters() {
 
     settings.width = parseInt(document.getElementById('width').value);
     settings.height = parseInt(document.getElementById('height').value);
-    settings.startPopulation = parseFloat(document.getElementById('startPopulation').value);
+    settings.startPopulation = parseInt(document.getElementById('startPopulation').value);
     settings.startWithPopulation = document.getElementById('startWithPopulation').checked;
 
     settingsField.hidden = true;
@@ -91,7 +91,6 @@ function settingsButtonClick() {
 
 settingsField.hidden = true;
 
-game.setStartpopulation(settings._startPopulation);
 game.populate(settings._startPopulation);
 
 graphics.setCellColor(cellColor);

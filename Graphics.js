@@ -41,11 +41,13 @@ export class Graphics {
 
     update(x,y,isAlive) {
         this.cells[x][y].setAttribute('class', isAlive ? 'cell alive '+this.cellColor+' '+this.borderColor+'Border' : 'cell '+this.backgroundColor+' '+this.borderColor+'Border');
-        this.currentPopulationField.innerHTML = this.game.getCurrentPopulation();
+        this.currentPopulationField.innerHTML = this.game.currentPopulation;
     }
 
     display() {
         // Affiche la grille de cellules dans la console
+        document.body.setAttribute('class', this.backgroundColor)
+        document.getElementById('game-of-life').setAttribute('class', this.backgroundColor)
         for (let y = 0; y < this.game.cells[0].length; y++) {
             for (let x = 0; x < this.game.cells.length; x++) {
                 this.update(x, y, this.game.cells[x][y]);

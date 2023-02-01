@@ -5,7 +5,7 @@ export class Settings {
         this._width = 200;    // Largeur de la grille
         this._height = 120;    // Hauteur de la grille
         this._startWithPopulation = true;
-        this._startPopulation = 0.3;  // Pourcentage de population de départ
+        this._startPopulation = 70;  // Pourcentage de population de départ
         this._cellColor = "green";        // Couleur des cellules vivantes
         this._backgroundColor = "black";  // Couleur des cellules mortes
         this._borderColor = "none";         // Couleur des contours des cellules
@@ -34,8 +34,8 @@ export class Settings {
     }
 
     set startPopulation(value) {
-        if (isNaN(value)) return;
-        this._startPopulation = Math.min(Math.max(value, 0), 1);
+        if (!Number.isInteger(value)) return;
+        this._startPopulation = Math.min(Math.max(value, 0), 100);
     }
 
     set cellColor(value) {

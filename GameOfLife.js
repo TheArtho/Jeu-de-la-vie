@@ -13,14 +13,10 @@ export class GameOfLife {
         for (let x = 0; x < this.width; x++) {
             this.cells[x] = new Array(this.height);
             for (let y = 0; y < this.height; y++) {
-                this.cells[x][y] = Math.random() > 1 - population;
+                this.cells[x][y] = Math.random() > 1 - population/100;
                 if (this.cells[x][y]) this.currentPopulation++;
             }
         }
-    }
-
-    setStartpopulation(value) {
-        this.startpopulation = value;
     }
 
     // Applique les règles du jeu de la vie à chaque cellule
@@ -73,10 +69,6 @@ export class GameOfLife {
             }
         }
         return count;
-    }
-
-    getCurrentPopulation() {
-        return this.currentPopulation;
     }
 
     reload(settings) {
